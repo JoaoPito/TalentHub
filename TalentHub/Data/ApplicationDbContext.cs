@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using TalentHub.Models;
 
 namespace TalentHub.Data;
 
@@ -9,4 +10,6 @@ public class ApplicationDbContext : IdentityDbContext
         : base(options)
     {
     }
+
+    public DbSet<Post> Posts { get; set; } = default!;
 }
