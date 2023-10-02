@@ -15,8 +15,7 @@ namespace TalentHub.Models
 
         [Required(ErrorMessage = "The title is required.")]
         [DisplayName("Title")]
-        [StringLength(80, ErrorMessage = "The title must have at most 80 characters.")]
-        [MinLength(1, ErrorMessage = "Title must not be empty.")]
+        [StringLength(80, MinimumLength = 5, ErrorMessage = "The title must have 5 to 80 characters.")]
         public string Title { get; set; } = string.Empty;
 
         [DisplayName("Description")]
