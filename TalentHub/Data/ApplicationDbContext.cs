@@ -13,5 +13,5 @@ public class ApplicationDbContext : IdentityDbContext
 
     public DbSet<Post> Posts { get; set; } = default!;
 
-    public DbSet<Question> Question { get; set; } = default!;
+    public DbSet<Question> Questions { get; set; } = default!;
 }

@@ -59,8 +59,7 @@ namespace TalentHub
         {
             if (ModelState.IsValid)
             {
-                Console.WriteLine("AAAAAAAAA ERA PRA TA FUNCUNANO");
-                post.UserName = User.Identity!.Name;
+                post.UserName = User.Identity!.Name!;
                 _context.Add(post);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

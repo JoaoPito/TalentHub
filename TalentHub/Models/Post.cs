@@ -1,6 +1,5 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Identity;
 
 namespace TalentHub.Models
 {
@@ -27,12 +26,12 @@ namespace TalentHub.Models
         public string Content { get; set; } = string.Empty;
 
         [DataType(DataType.DateTime)]
-        [DisplayName("Created At")]
+        [DisplayName("Created")]
         [Required(ErrorMessage = "Invalid Creation Date.")]
         public DateTime CreatedDate { get; set; } = DateTime.Now;
 
         [DataType(DataType.DateTime)]
-        [DisplayName("Modified At")]
+        [DisplayName("Edited")]
         [Required(ErrorMessage = "Invalid Modification Date.")]
         public DateTime ModifiedDate { get; set; } = DateTime.Now;
     }

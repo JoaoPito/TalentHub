@@ -21,8 +21,8 @@ namespace TalentHub
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-              return _context.Question != null ? 
-                          View(await _context.Question.ToListAsync()) :
+              return _context.Questions != null ? 
+                          View(await _context.Questions.ToListAsync()) :
                           Problem("Entity set 'ApplicationDbContext.Question'  is null.");
         }
 
@@ -30,12 +30,12 @@ namespace TalentHub
         [AllowAnonymous]
         public async Task<IActionResult> Details(Guid? id)
         {
-            if (id == null || _context.Question == null)
+            if (id == null || _context.Questions == null)
             {
                 return NotFound();
             }
 
-            var question = await _context.Question
+            var question = await _context.Questions
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (question == null)
             {
@@ -74,12 +74,12 @@ namespace TalentHub
         // GET: Question/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
-            if (id == null || _context.Question == null)
+            if (id == null || _context.Questions == null)
             {
                 return NotFound();
             }
 
-            var question = await _context.Question.FindAsync(id);
+            var question = await _context.Questions.FindAsync(id);
             if (question == null)
             {
                 return NotFound();
@@ -125,12 +125,12 @@ namespace TalentHub
         // GET: Question/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
-            if (id == null || _context.Question == null)
+            if (id == null || _context.Questions == null)
             {
                 return NotFound();
             }
 
-            var question = await _context.Question
+            var question = await _context.Questions
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (question == null)
             {
@@ -145,14 +145,14 @@ namespace TalentHub
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            if (_context.Question == null)
+            if (_context.Questions == null)
             {
                 return Problem("Entity set 'ApplicationDbContext.Question'  is null.");
             }
-            var question = await _context.Question.FindAsync(id);
+            var question = await _context.Questions.FindAsync(id);
             if (question != null)
             {
-                _context.Question.Remove(question);
+                _context.Questions.Remove(question);
             }
             
             await _context.SaveChangesAsync();
@@ -161,7 +161,7 @@ namespace TalentHub
 
         private bool QuestionExists(Guid id)
         {
-          return (_context.Question?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Questions?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
