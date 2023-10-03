@@ -6,9 +6,8 @@ namespace TalentHub.Models
     public class Question
     {
         [Key]
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = default!;
 
-        [Required(ErrorMessage = "Invalid User")]
         [DisplayName("Username")]
         public string UserName { get; set; } = string.Empty;
 
@@ -17,12 +16,12 @@ namespace TalentHub.Models
         [StringLength(80, MinimumLength = 5, ErrorMessage = "The title must have 5 to 80 characters.")]
         public string Title { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Invalid Created Date")]
+        [Required(ErrorMessage = "Invalid Creation Date")]
         [DisplayName("Created At")]
         [DataType(DataType.DateTime)]
         public DateTime CreatedDate { get; set; } = DateTime.Now;
 
-        [Required(ErrorMessage = "Invalid Modified Date")]
+        [Required(ErrorMessage = "Invalid Modification Date")]
         [DisplayName("Modified At")]
         [DataType(DataType.DateTime)]
         public DateTime ModifiedDate { get; set; } = DateTime.Now;
