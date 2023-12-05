@@ -22,7 +22,7 @@ namespace TalentHub.Models
         public string Description { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Post has no content")]
-        [StringLength(1000, ErrorMessage = "The post's content should have at most 1000 characters.")]
+        [StringLength(2500, ErrorMessage = "The post's content should have at most 2500 characters.")]
         public string Content { get; set; } = string.Empty;
 
         [DataType(DataType.DateTime)]
