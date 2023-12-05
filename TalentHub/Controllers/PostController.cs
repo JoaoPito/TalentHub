@@ -84,6 +84,12 @@ namespace TalentHub
             }
 
             var post = await _context.Posts.FindAsync(id);
+
+            if (User.Identity != null && !HasPermissions(post, User.Identity.Name))
+            {
+                return Forbid();
+            }
+
             if (post == null)
             {
                 return NotFound();
@@ -108,6 +114,11 @@ namespace TalentHub
                 try
                 {
                     var oldPost = _context.Posts.FirstOrDefault(x => x.Id == id)!;
+
+                    if (User.Identity != null && !HasPermissions(oldPost, User.Identity.Name))
+                    {
+                        return Forbid();
+                    }
 
                     oldPost.Title = post.Title;
                     oldPost.Description = post.Description;
@@ -148,6 +159,11 @@ namespace TalentHub
                 return NotFound();
             }
 
+            if (User.Identity != null && !HasPermissions(post, User.Identity.Name))
+            {
+                return Forbid();
+            }
+
             return View(post);
         }
 
@@ -163,6 +179,9 @@ namespace TalentHub
             var post = await _context.Posts.FindAsync(id);
             if (post != null)
             {
+                if (User.Identity != null && !HasPermissions(post, User.Identity.Name))
+                    return Forbid();
+
                 _context.Posts.Remove(post);
             }
             
@@ -173,6 +192,14 @@ namespace TalentHub
         private bool PostExists(int id)
         {
           return (_context.Posts?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
+
+        private bool HasPermissions(Post post, string currentUser){
+            if (post.UserName != currentUser)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }
