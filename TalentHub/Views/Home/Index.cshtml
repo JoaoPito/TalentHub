@@ -4,6 +4,14 @@
 
 <div class="text-center">
     <h1 class="display-4">TalentHub</h1>
+
+    @using (Html.BeginForm("", "Post", FormMethod.Get))
+    {
+        <input type="text" name="tags" placeholder="Learn a subject" />
+        <input type="submit" value="Search" />
+    }
+
+    <br>
     <h2>O que é esse tal de TalentHub?</h2>
     <p></p>
     
