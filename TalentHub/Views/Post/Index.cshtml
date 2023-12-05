@@ -13,6 +13,13 @@
     <thead>
     </thead>
     <tbody>
+
+@using (Html.BeginForm("", "Post", FormMethod.Get))
+{
+    <input type="text" name="tags" placeholder="Find posts by tags" />
+    <input type="submit" value="Search" />
+}
+
 @foreach (var item in Model) {
         <tr>
             <td>
@@ -22,7 +29,7 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UserName)
+                @Html.DisplayFor(modelItem => item.Tags)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CreatedDate)

@@ -18,10 +18,10 @@ namespace TalentHub
 
         // GET: Post
         [AllowAnonymous]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index([FromQuery] string tags="")
         {
               return _context.Posts != null ? 
-                          View(await _context.Posts.ToListAsync()) :
+                          View(await _context.Posts.Where(p => p.Tags.Contains(tags)).ToListAsync()) :
                           Problem("Entity set 'ApplicationDbContext.Posts'  is null.");
         }
 
@@ -55,7 +55,7 @@ namespace TalentHub
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,UserName,Title,Description,Content,CreatedDate,ModifiedDate")] Post post)
+        public async Task<IActionResult> Create([Bind("Id,UserName,Title,Description,Content,CreatedDate,ModifiedDate,Tags")] Post post)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace TalentHub
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UserName,Title,Description,Content,CreatedDate,ModifiedDate")] Post post)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UserName,Title,Description,Content,CreatedDate,ModifiedDate,Tags")] Post post)
         {
             if (id != post.Id)
             {

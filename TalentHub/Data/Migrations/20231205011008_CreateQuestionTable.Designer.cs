@@ -11,7 +11,7 @@ using TalentHub.Data;
 namespace TalentHub.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231002164943_CreateQuestionTable")]
+    [Migration("20231205011008_CreateQuestionTable")]
     partial class CreateQuestionTable
     {
         /// <inheritdoc />
@@ -280,7 +280,7 @@ namespace TalentHub.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Question");
+                    b.ToTable("Questions");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
