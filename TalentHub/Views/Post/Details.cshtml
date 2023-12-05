@@ -4,47 +4,35 @@
     ViewData["Title"] = "Details";
 }
 
+<a asp-action="Index">Back</a> |
+<a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
+
 <h1>
-        @Html.DisplayFor(model => model.Title)
+    @Html.DisplayFor(model => model.Title)
 </h1>
 
+<h4>
+    @Html.DisplayFor(model => model.Description)
+</h4>
+
+ @Html.DisplayFor(model => model.CreatedDate)
+
 <div>
-    <hr />
+    <hr />    
     <dl class="row">
-        <dt class = "col-sm-1">
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
         <dd class = "col-sm-5">
             @Html.DisplayFor(model => model.UserName)
         </dd>
         <dt class = "col-sm-1">
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </dt>
-        <dd class = "col-sm-5">
-            @Html.DisplayFor(model => model.CreatedDate)
-        </dd>
-        
-        <dt class = "col-sm-1">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-11">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <br>
-        <dd class = "col-sm-12">
-            @Html.DisplayFor(model => model.Content)
-        </dd>
-        <br>
-        <dt class = "col-sm-1">
             @Html.DisplayNameFor(model => model.Tags)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-6">
             @Html.DisplayFor(model => model.Tags)
         </dd>
-        
     </dl>
+
+    @Html.DisplayFor(model => model.Content)
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    
 </div>
