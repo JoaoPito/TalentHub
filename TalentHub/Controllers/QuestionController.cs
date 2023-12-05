@@ -22,7 +22,9 @@ namespace TalentHub
         public async Task<IActionResult> Index()
         {
               return _context.Questions != null ? 
-                          View(await _context.Questions.ToListAsync()) :
+                          View(await _context.Questions
+                                                    .OrderByDescending(q => q.CreatedDate)
+                                                    .ToListAsync()) :
                           Problem("Entity set 'ApplicationDbContext.Question'  is null.");
         }
 

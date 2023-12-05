@@ -21,7 +21,10 @@ namespace TalentHub
         public async Task<IActionResult> Index([FromQuery] string tags="")
         {
               return _context.Posts != null ? 
-                          View(await _context.Posts.Where(p => p.Tags.Contains(tags)).ToListAsync()) :
+                          View(await _context.Posts.Where(p => p.Tags
+                                                                .Contains(tags))
+                                                                .OrderByDescending(p => p.CreatedDate)
+                                                                .ToListAsync()) :
                           Problem("Entity set 'ApplicationDbContext.Posts'  is null.");
         }
 
