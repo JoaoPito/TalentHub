@@ -4,54 +4,44 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>
+        @Html.DisplayFor(model => model.Title)
+</h1>
 
 <div>
-    <h4>Post</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class = "col-sm-1">
             @Html.DisplayNameFor(model => model.UserName)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-5">
             @Html.DisplayFor(model => model.UserName)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
+        <dt class = "col-sm-1">
+            @Html.DisplayNameFor(model => model.CreatedDate)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
+        <dd class = "col-sm-5">
+            @Html.DisplayFor(model => model.CreatedDate)
         </dd>
-        <dt class = "col-sm-2">
+        
+        <dt class = "col-sm-1">
             @Html.DisplayNameFor(model => model.Description)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-11">
             @Html.DisplayFor(model => model.Description)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Content)
-        </dt>
-        <dd class = "col-sm-10">
+        <br>
+        <dd class = "col-sm-12">
             @Html.DisplayFor(model => model.Content)
         </dd>
-        <dt class = "col-sm-2">
+        <br>
+        <dt class = "col-sm-1">
             @Html.DisplayNameFor(model => model.Tags)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Tags)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CreatedDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ModifiedDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ModifiedDate)
-        </dd>
+        
     </dl>
 </div>
 <div>
