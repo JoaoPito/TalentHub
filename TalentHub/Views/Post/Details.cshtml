@@ -1,9 +1,5 @@
 @model TalentHub.Models.Post
 
-@{
-    ViewData["Title"] = "Details";
-}
-
 <a asp-action="Index">Back</a> |
 <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
 
@@ -29,7 +25,8 @@
         </dd>
     </dl>
 
-    @Html.DisplayFor(model => model.Content)
+@Html.Raw(ViewBag.HtmlContent)
+
 </div>
 <div>
     

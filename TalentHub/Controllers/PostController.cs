@@ -44,6 +44,9 @@ namespace TalentHub
                 return NotFound();
             }
 
+            var postContent = Markdig.Markdown.ToHtml(post.Content);
+            ViewBag.HtmlContent = postContent;
+
             return View(post);
         }
 
