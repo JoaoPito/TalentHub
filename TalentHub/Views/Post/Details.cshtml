@@ -15,18 +15,16 @@
     @Html.DisplayFor(model => model.Description)
 </h4>
 
- @Html.DisplayFor(model => model.CreatedDate)
+@Html.DisplayFor(model => model.UserName)
+@Html.DisplayFor(model => model.CreatedDate)
 
 <div>
     <hr />    
     <dl class="row">
-        <dd class = "col-sm-5">
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
         <dt class = "col-sm-1">
             @Html.DisplayNameFor(model => model.Tags)
         </dt>
-        <dd class = "col-sm-6">
+        <dd class = "col-sm-11">
             @Html.DisplayFor(model => model.Tags)
         </dd>
     </dl>
