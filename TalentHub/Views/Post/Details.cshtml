@@ -15,11 +15,9 @@
     @Html.DisplayFor(model => model.Description)
 </h4>
 
-@Html.DisplayFor(model => model.UserName) | 
-@Html.DisplayFor(model => model.CreatedDate)
-
-<div>
-    <hr />    
+<div class="text-sm">
+    @Html.DisplayFor(model => model.UserName) | 
+    @Html.DisplayFor(model => model.CreatedDate)
     <dl class="row">
         <dt class = "col-sm-1">
             @Html.DisplayNameFor(model => model.Tags)
@@ -28,9 +26,11 @@
             @Html.DisplayFor(model => model.Tags)
         </dd>
     </dl>
-
+    
+</div>
+<hr />    
+<div>
     @Html.Raw(ViewBag.HtmlContent)
-
 </div>
 <div>
     
