@@ -19,10 +19,11 @@ namespace TalentHub
 
         // GET: Question
         [AllowAnonymous]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index([FromQuery] string tags="")
         {
               return _context.Questions != null ? 
                           View(await _context.Questions
+                                                    .Where(q => q.Tags.Contains(tags.ToLower()))
                                                     .OrderByDescending(q => q.CreatedDate)
                                                     .ToListAsync()) :
                           Problem("Entity set 'ApplicationDbContext.Question'  is null.");
@@ -44,6 +45,9 @@ namespace TalentHub
                 return NotFound();
             }
 
+            var questionContent = Markdig.Markdown.ToHtml(question.Content);
+            ViewBag.HtmlContent = questionContent;
+
             return View(question);
         }
 
@@ -58,12 +62,13 @@ namespace TalentHub
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,UserName,Title,CreatedDate,ModifiedDate,Content")] Question question)
+        public async Task<IActionResult> Create([Bind("Id,UserName,Title,CreatedDate,ModifiedDate,Content,Tags")] Question question)
         {
             if (ModelState.IsValid)
             {
                 question.Id = Guid.NewGuid();
                 question.UserName = User.Identity!.Name!;
+                question.Tags = question.Tags.ToLower();
 
                 _context.Add(question);
                 await _context.SaveChangesAsync();
@@ -94,7 +99,7 @@ namespace TalentHub
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,UserName,Title,CreatedDate,ModifiedDate,Content")] Question question)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,UserName,Title,CreatedDate,ModifiedDate,Content,Tags")] Question question)
         {
             if (id != question.Id)
             {
@@ -103,9 +108,17 @@ namespace TalentHub
 
             if (ModelState.IsValid)
             {
+                question.Tags = question.Tags.ToLower();
+
                 try
                 {
-                    _context.Update(question);
+                    var oldQuestion = _context.Questions.FirstOrDefault(x => x.Id == id);
+
+                    oldQuestion!.Title = question.Title;
+                    oldQuestion.Content = question.Content;
+                    oldQuestion.ModifiedDate = DateTime.Now;
+                    oldQuestion.Tags = question.Tags.ToLower();
+                    
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

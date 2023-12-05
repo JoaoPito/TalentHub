@@ -5,13 +5,14 @@
 }
 
 <div>
-    <a asp-action="Index">Back to List</a> |
+    <a asp-action="Index">Back</a> |
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Delete" asp-route-id="@Model?.Id">Delete</a>
 </div>
+<br>
 
 <h4>
-@Html.DisplayFor(model => model.UserName) is asking:
+    @Html.DisplayFor(model => model.UserName) is asking:
 </h4>
 
 <h1>
@@ -22,6 +23,15 @@
 
 <div>
     <hr />
-    @Html.DisplayFor(model => model.Content)
+    <dl class="row">
+        <dt class = "col-sm-1">
+            @Html.DisplayNameFor(model => model.Tags)
+        </dt>
+        <dd class = "col-sm-11">
+            @Html.DisplayFor(model => model.Tags)
+        </dd>
+    </dl>
+
+    @Html.Raw(ViewBag.HtmlContent)
 </div>
 

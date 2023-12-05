@@ -36,7 +36,7 @@ namespace TalentHub.Models
         public DateTime ModifiedDate { get; set; } = DateTime.Now;
 
         [DisplayName("Tags")]
-        [StringLength(150, ErrorMessage = "Tha tags must have at most 150 characters.")]
+        [StringLength(150, ErrorMessage = "The tags must have at most 150 characters.")]
         public string Tags { get; set; } = string.Empty;
     }
 }

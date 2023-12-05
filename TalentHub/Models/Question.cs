@@ -28,5 +28,9 @@ namespace TalentHub.Models
     
         [StringLength(1000, ErrorMessage = "Content must have at most 1000 characters")]
         public string Content { get; set; } = string.Empty;
+
+        [DisplayName("Tags")]
+        [StringLength(150, ErrorMessage = "The tags must have at most 150 characters.")]
+        public string Tags { get; set; } = string.Empty;
     }
 }
