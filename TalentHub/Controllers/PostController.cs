@@ -22,7 +22,7 @@ namespace TalentHub
         {
               return _context.Posts != null ? 
                           View(await _context.Posts.Where(p => p.Tags
-                                                                .Contains(tags))
+                                                                .Contains(tags.ToLower()))
                                                                 .OrderByDescending(p => p.CreatedDate)
                                                                 .ToListAsync()) :
                           Problem("Entity set 'ApplicationDbContext.Posts'  is null.");
@@ -66,6 +66,8 @@ namespace TalentHub
             if (ModelState.IsValid)
             {
                 post.UserName = User.Identity!.Name!;
+                post.Tags = post.Tags.ToLower();
+
                 _context.Add(post);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -111,6 +113,7 @@ namespace TalentHub
                     oldPost.Description = post.Description;
                     oldPost.Content = post.Content;
                     oldPost.ModifiedDate = DateTime.Now;
+                    oldPost.Tags = post.Tags.ToLower();
 
                     await _context.SaveChangesAsync();
                 }
