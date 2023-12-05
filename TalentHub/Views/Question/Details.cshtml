@@ -4,46 +4,24 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<div>
+    <a asp-action="Index">Back to List</a> |
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Delete" asp-route-id="@Model?.Id">Delete</a>
+</div>
+
+<h4>
+@Html.DisplayFor(model => model.UserName) is asking:
+</h4>
+
+<h1>
+    @Html.DisplayFor(model => model.Title)
+</h1>
+
+@Html.DisplayFor(model => model.CreatedDate)
 
 <div>
-    <h4>Question</h4>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CreatedDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ModifiedDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ModifiedDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Content)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Content)
-        </dd>
-    </dl>
+    @Html.DisplayFor(model => model.Content)
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Delete" asp-route-id="@Model?.Id">Delete</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+

@@ -11,9 +11,15 @@
 </p>
 <table class="table">
     <tbody>
+
+@using (Html.BeginForm("", "Question", FormMethod.Get))
+{
+    <input type="text" name="tags" placeholder="Find questions by tags" />
+    <input type="submit" value="Search" />
+}
+
 @foreach (var item in Model) {
         <tr>
-            
             <td>
                 <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Title)</a>
             </td>
