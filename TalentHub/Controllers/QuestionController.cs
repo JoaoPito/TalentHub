@@ -87,6 +87,12 @@ namespace TalentHub
             }
 
             var question = await _context.Questions.FindAsync(id);
+
+            if (User.Identity != null && !HasPermissions(question, User.Identity.Name))
+            {
+                return Forbid();
+            }
+
             if (question == null)
             {
                 return NotFound();
@@ -113,6 +119,11 @@ namespace TalentHub
                 try
                 {
                     var oldQuestion = _context.Questions.FirstOrDefault(x => x.Id == id);
+
+                    if (User.Identity != null && !HasPermissions(oldQuestion, User.Identity.Name))
+                    {
+                        return Forbid();
+                    }
 
                     oldQuestion!.Title = question.Title;
                     oldQuestion.Content = question.Content;
@@ -152,6 +163,11 @@ namespace TalentHub
                 return NotFound();
             }
 
+            if (User.Identity != null && !HasPermissions(question, User.Identity.Name))
+            {
+                return Forbid();
+            }
+
             return View(question);
         }
 
@@ -167,6 +183,11 @@ namespace TalentHub
             var question = await _context.Questions.FindAsync(id);
             if (question != null)
             {
+                if (User.Identity != null && !HasPermissions(question, User.Identity.Name))
+                {
+                    return Forbid();
+                }
+
                 _context.Questions.Remove(question);
             }
             
@@ -177,6 +198,14 @@ namespace TalentHub
         private bool QuestionExists(Guid id)
         {
           return (_context.Questions?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
+
+        private bool HasPermissions(Question question, string currentUser){
+            if (question.UserName != currentUser)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }
